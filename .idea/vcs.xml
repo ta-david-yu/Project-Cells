@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/extern/DYEngine" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/extern/DYEngine/DYEditor/DYEditorCodeGenerator/extern/fmt" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/extern/DYEngine/DYEditor/extern/entt" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/extern/DYEngine/DYEditor/extern/tomlplusplus/tomlplusplus" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/extern/DYEngine/DYEngine/extern/glm" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/extern/DYEngine/DYEngine/extern/imgui/imgui" vcs="Git" />
+  </component>
+</project>
