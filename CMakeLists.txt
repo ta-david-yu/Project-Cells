@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.25)
 
 # !!! Change this line to the name of your project !!!
-project(DYEditorTemplateProject)
+project(ProjectCells)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
