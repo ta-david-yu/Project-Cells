@@ -135,20 +135,21 @@ namespace DYE::DYEditor
 					{
 						.Serialize = [](Entity& entity, SerializedComponent& serializedComponent)
 						{
-
+							auto const& component = entity.GetComponent<DYE::DYEditor::SpawnBoxOnMouseButtonComponent>();
+							serializedComponent.SetPrimitiveTypePropertyValue("BoxColor", component.BoxColor);
 							return SerializationResult {};
 						},
 						.Deserialize = [](SerializedComponent& serializedComponent, DYE::DYEditor::Entity& entity)
 						{
-							entity.AddOrGetComponent<DYE::DYEditor::SpawnBoxOnMouseButtonComponent>();
+							auto& component = entity.AddOrGetComponent<DYE::DYEditor::SpawnBoxOnMouseButtonComponent>();
+							component.BoxColor = serializedComponent.GetPrimitiveTypePropertyValueOr<Color4>("BoxColor", {1, 1, 1, 1});
 							return DeserializationResult {};
 						},
 						.DrawInspector = [](DrawComponentInspectorContext &drawInspectorContext, Entity &entity)
 						{
 							bool changed = false;
-							ImGui::Indent();
-							ImGui::TextUnformatted("The component doesn't have any properties (i.e. DYE_PROPERTY).");
-							ImGui::Unindent();
+							auto& component = entity.GetComponent<DYE::DYEditor::SpawnBoxOnMouseButtonComponent>();
+							changed |= ImGuiUtil::DrawColor4Control("BoxColor", component.BoxColor); updateContextAfterDrawControlCall(drawInspectorContext);
 							return changed;
 						}
 					}

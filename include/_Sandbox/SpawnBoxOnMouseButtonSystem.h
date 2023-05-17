@@ -35,6 +35,7 @@ namespace DYE::DYEditor
 			auto group = world.GetGroup<SpawnBoxOnMouseButtonComponent>(Get<CameraComponent, TransformComponent>);
 			for (auto entity : group)
 			{
+				SpawnBoxOnMouseButtonComponent &spawnBoxOnMouseButtonComponent = group.get<SpawnBoxOnMouseButtonComponent>(entity);
 				CameraComponent &cameraComponent = group.get<CameraComponent>(entity);
 				TransformComponent &transformComponent = group.get<TransformComponent>(entity);
 
@@ -68,7 +69,7 @@ namespace DYE::DYEditor
 
 				// Spawn a box sprite entity at the position.
 				Entity newBoxEntity = world.CreateEntity("Box");
-				newBoxEntity.AddComponent<SpriteRendererComponent>();
+				newBoxEntity.AddComponent<SpriteRendererComponent>().Color = spawnBoxOnMouseButtonComponent.BoxColor;
 				newBoxEntity.AddComponent<TransformComponent>().Position = worldPositionClicked;
 			}
 		}
