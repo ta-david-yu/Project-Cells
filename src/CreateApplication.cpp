@@ -12,7 +12,7 @@ namespace DYE
 		auto mainWindowWidth = runtimeConfig.GetOrDefault<int>(DYEditor::RuntimeConfigKeys::MainWindowWidth, 1600);
 		auto mainWindowHeight = runtimeConfig.GetOrDefault<int>(DYEditor::RuntimeConfigKeys::MainWindowHeight, 900);
 
-		return new DYEditor::DYEditorApplication
+		Application *pApp = new DYEditor::DYEditorApplication
 		{
 			WindowProperties
 			{
@@ -22,5 +22,7 @@ namespace DYE
 			},
 			60
 		};
+
+		return pApp;
 	}
 }

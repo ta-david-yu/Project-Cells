@@ -31,8 +31,11 @@ set(SOURCE_FILES
 
 # !!! Include your header files here !!!
 set(HEADER_FILES
-        include/Components/ExampleComponent.h
-        include/Systems/ExampleSystem.h)
+        include/_Sandbox/ExampleComponent.h
+        include/_Sandbox/ExampleSystem.h
+        include/_Sandbox/SpawnBoxOnMouseButtonSystem.h
+        include/_Sandbox/SpawnBoxOnMouseButtonComponent.h
+        include/_Sandbox/AudioPlayerSystem.h)
 
 set(INCLUDE_DIRS
         include

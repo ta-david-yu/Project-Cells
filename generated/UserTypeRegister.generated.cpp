@@ -12,8 +12,11 @@
 #include "ImGui/ImGuiUtil.h"
 
 // Insert user headers here...
-#include "include/Components/ExampleComponent.h"
-#include "include/Systems/ExampleSystem.h"
+#include "include/_Sandbox/ExampleComponent.h"
+#include "include/_Sandbox/ExampleSystem.h"
+#include "include/_Sandbox/SpawnBoxOnMouseButtonSystem.h"
+#include "include/_Sandbox/SpawnBoxOnMouseButtonComponent.h"
+#include "include/_Sandbox/AudioPlayerSystem.h"
 
 
 namespace DYE::DYEditor
@@ -31,7 +34,7 @@ namespace DYE::DYEditor
 	{
 		// Insert user type registration here...
 
-		// Component located in include/Components/ExampleComponent.h
+		// Component located in include/_Sandbox/ExampleComponent.h
 		TypeRegistry::RegisterComponentType<DYE::DYEditor::Template::ExampleComponent>
 			(
 				"Example Component",
@@ -59,7 +62,7 @@ namespace DYE::DYEditor
 					}
 			);
 
-		// Component located in include/Components/ExampleComponent.h
+		// Component located in include/_Sandbox/ExampleComponent.h
 		TypeRegistry::RegisterComponentType<DYE::DYEditor::Template::ComponentWithAllPrimitiveProperties>
 			(
 				"ComponentWithAllPrimitiveProperties",
@@ -124,9 +127,48 @@ namespace DYE::DYEditor
 					}
 			);
 
-		// System located in include/Systems/ExampleSystem.h
+		// Component located in include/_Sandbox/SpawnBoxOnMouseButtonComponent.h
+		TypeRegistry::RegisterComponentType<DYE::DYEditor::SpawnBoxOnMouseButtonComponent>
+			(
+				"Spawn Box On Mouse Button",
+				ComponentTypeDescriptor
+					{
+						.Serialize = [](Entity& entity, SerializedComponent& serializedComponent)
+						{
+
+							return SerializationResult {};
+						},
+						.Deserialize = [](SerializedComponent& serializedComponent, DYE::DYEditor::Entity& entity)
+						{
+							entity.AddOrGetComponent<DYE::DYEditor::SpawnBoxOnMouseButtonComponent>();
+							return DeserializationResult {};
+						},
+						.DrawInspector = [](DrawComponentInspectorContext &drawInspectorContext, Entity &entity)
+						{
+							bool changed = false;
+							ImGui::Indent();
+							ImGui::TextUnformatted("The component doesn't have any properties (i.e. DYE_PROPERTY).");
+							ImGui::Unindent();
+							return changed;
+						}
+					}
+			);
+
+		// System located in include/_Sandbox/ExampleSystem.h
 		static DYE::DYEditor::Template::ExampleSystem _ExampleSystem;
 		TypeRegistry::RegisterSystem("Example System", &_ExampleSystem);
+
+		// System located in include/_Sandbox/ExampleSystem.h
+		static DYE::DYEditor::Template::MousePositionInCameraSpaceImGuiSystem _MousePositionInCameraSpaceImGuiSystem;
+		TypeRegistry::RegisterSystem("Mouse Position In Camera Space System", &_MousePositionInCameraSpaceImGuiSystem);
+
+		// System located in include/_Sandbox/SpawnBoxOnMouseButtonSystem.h
+		static DYE::DYEditor::SpawnBoxOnMouseButtonSystem _SpawnBoxOnMouseButtonSystem;
+		TypeRegistry::RegisterSystem("Spawn Box On Mouse Button System", &_SpawnBoxOnMouseButtonSystem);
+
+		// System located in include/_Sandbox/AudioPlayerSystem.h
+		static DYE::DYEditor::AudioPlayerSystem _AudioPlayerSystem;
+		TypeRegistry::RegisterSystem("Audio Player System", &_AudioPlayerSystem);
 
 	}
 
